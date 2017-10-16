@@ -1,0 +1,109 @@
+.content {
+  min-height: 100%;
+}
+
+.content-inside {
+  padding: 0;
+  padding-bottom: 50px;
+}
+
+/**
+ * Administration : tableau
+ */
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+}
+
+/**
+ * class qui permet de cacher le boutn 'Annuler ajout'
+ */
+.cacher{
+	display: none;
+}
+
+.form_button_annuler{
+	display: none;
+}
+
+.form_button_ajouter{
+	display: none;
+}
+
+/**
+ * Barre verticale de la page de connexion
+ */
+.separation{
+	clear: both;
+	position: absolute;
+	margin-top :10px;
+	margin-left: 250px;
+	height: 300px;
+	width : 1px;
+	background: black;
+}
+
+/**
+ * Lien traduction des langues
+ */
+.lien_langue{
+	text-decoration: underline;
+	padding-right: 5px;
+}
+
+/**
+ * Container des liens langues 
+ */
+.container_langue{
+	margin-left: 1400px;
+}
+
+/**
+ * 
+ */
+.confirmation_inscription{
+	margin-left: 300px;
+	border: 1px solid black;
+	width: 900px;
+}
+
+/**
+ * 
+ */
+.p_equipe_administrative{
+	padding-left: 750px;
+}
+
+.container_espace_membre{
+	margin-left: 1200px;
+}
+
+h1{
+	font-size: 24px;
+	font-weight: bold;
+}
+
+a{
+	text-decoration: underline;
+}
+
+.image_a_la_une{
+	margin: 100 auto;
+	width: 1000px;
+}
+
+.resultat {
+  position: absolute;
+  background: white;
+  border-radius: 	0px 0px 10px 10px;
+  width: 258px;
+  height: auto;
+  /*padding: 10px 10px;*/
+}

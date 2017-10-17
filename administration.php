@@ -179,6 +179,8 @@ $liste_classes = $query_classes->fetchALL(PDO::FETCH_ASSOC);
         </div>    
 
       <div class="col-md-9" style="background-color: #AEB6BF; border-radius: 15px"> 
+
+        
         <!-- <?php //include 'vue_liste_administrateurs.php'; ?> -->
 
         <?php
@@ -213,6 +215,8 @@ $liste_classes = $query_classes->fetchALL(PDO::FETCH_ASSOC);
                                     break;
                                   
                   }
+              }else if(!isset($_GET['page'])){
+                include 'vue_bienvenue_admin.php';
               }
 
         ?>

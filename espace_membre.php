@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+require_once 'Model/config.php';
 
 if(isset($_GET['login_prenom'])){
   $login = $_GET['login_prenom'];
@@ -8,14 +9,14 @@ if(isset($_GET['login_prenom'])){
 
 
 
-    try{
-        $bdd = new PDO('mysql:host=localhost;dbname=my_upload;charset=utf8', 'root', 'user');
+    // try{
+    //     $bdd = new PDO('mysql:host=localhost;dbname=my_upload;charset=utf8', 'root', 'user');
 
-        $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-      }catch(PDOException $e){
-        die('Erreur : '. $e->getMessage());
-      }
+    //     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //     $bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+    //   }catch(PDOException $e){
+    //     die('Erreur : '. $e->getMessage());
+    //   }
 
  //select pour récupérer le nom et prénom du student
   $var1 = $_SESSION['login_prenom'];
@@ -143,7 +144,7 @@ if(isset($_GET['login_prenom'])){
               <?php } ?>
 
 
-                <label><?= $student[0]['promo'] ?></label>
+                <label><?= $student[0]['promo']; ?></label>
               </div>
             <form action="" method="GET">
                 <label for="login_prenom">Prénom:</label>

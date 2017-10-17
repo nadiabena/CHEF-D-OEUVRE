@@ -1,3 +1,22 @@
+<?php if(isset($_SESSION['ajout_ok']) && !empty($_SESSION['ajout_ok'])  )  {
+        unset($_SESSION['suppression_ok']);
+        unset($_SESSION['maj_ok']);
+        unset($_SESSION['ajout_ok']);
+        
+        unset($_SESSION['ajout_ko']);
+?>
+<br/>
+<div style="text-align:left; color:green; border:1px solid green" id="div_enregistrer" >
+  Ajout réussie!
+</div>
+<?php 
+   
+} else {
+  unset($_SESSION['ajout_ok']);
+}?>
+
+
+
 <?php if(isset($_SESSION['maj_ok'])  && !empty($_SESSION['maj_ok']) )  { 
         unset($_SESSION['maj_ok']);
 ?>
@@ -6,6 +25,7 @@
   Vos données ont bien été mises à jour!
 </div>
 <?php } ?>
+
 
 
 <?php if(isset($_SESSION['suppression_ok']) && !empty($_SESSION['suppression_ok'])  )  { 
@@ -19,23 +39,19 @@
   unset($_SESSION['suppression_ok']);  
 } else { 
   unset($_SESSION['suppression_ok']);
-
 }?>
 
 
-<?php if(isset($_SESSION['ajout_ok']) && !empty($_SESSION['ajout_ok'])  )  {
-        unset($_SESSION['suppression_ok']);
+
+<?php if(isset($_SESSION['ajout_ko'])  && !empty($_SESSION['ajout_ko']) )  { 
+        unset($_SESSION['ajout_ko']);
 ?>
 <br/>
-<div style="text-align:left; color:green; border:1px solid green" id="div_enregistrer" >
-  Ajout réussie!
+<div style="text-align:left; color:red; border:1px solid red" id="div_enregistrer" >
+  Impossible d'ajouter une entrée vide!
 </div>
-<?php 
-  unset($_SESSION['ajout_ok']);  
-} else { 
-  unset($_SESSION['ajout_ok']);
+<?php } ?>
 
-}?>
 
 
 <?php
@@ -57,6 +73,13 @@ if(isset($_GET['promo_to_add']) && !empty($_GET['promo_to_add'])){
   
   $query_promos = $bdd->query('SELECT * FROM promo'); 
   $liste_promos = $query_promos->fetchALL(PDO::FETCH_ASSOC);
+
+  header('Location: administration.php?page=promos');
+
+}else if(isset($_GET['promo_to_add']) && empty($_GET['promo_to_add'])){
+    $_SESSION['ajout_ko'] = "Echec ajout!";
+
+    header('Location: administration.php?page=promos');
 }
 
 ?>
@@ -148,7 +171,7 @@ function retirer_button_annuler(){
 function creer_zone_ajout() {
     //var id_button_ajouter = document.getElementById('div_button_ajouter');
     //id_button_ajouter.removeChild(document.getElementById('id_button_ajouter'));
-    
+
     var id_button_ajouter = document.getElementById('id_button_ajouter');
     id_button_ajouter.setAttribute("class","cacher");
     

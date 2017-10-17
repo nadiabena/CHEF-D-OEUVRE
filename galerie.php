@@ -115,20 +115,25 @@ $liste_events = $query_event->fetchALL(PDO::FETCH_ASSOC);
               <a style="color:white" class="espace_membre" href="application.php"> <p> <span class="glyphicon glyphicon-hand-left"></span> Accueil </p> </a> 
         </div>
       </div>
-    </div>  
+    </div>
 
 
       <div class="row">
 
             <div style="padding:20px; background-color: #AEB6BF; border-radius: 15px" class="col-md-offset-1 col-md-10">
-      Evénement <select>
-                  <option value="">Choisissez un événement</option>
-                  <option value="all">Tout</option>
+      Evénement <select onchange="filtreA(this)" name="filtre_event" id="id_filtre_event">
+                  <option id="0" >Choisissez un événement</option>
+                  <option id="-1">Tout</option>
                   <?php foreach ($liste_events as $key => $value) { ?>
-                    <option value="<?= $value['id_event'] ?>"><?= $value['description_event'] ?></option>
+                    <option id="<?= $value['id_event'] ?>" ><?= $value['description_event'] ?></option>
                   <?php } ?>
                 </select>
-            </div>
+
+                <div id="id_event_by_select">
+
+                </div>
+
+            </div> <!-- DIV grise -->
 
       </div> <!-- row -->
 
@@ -191,6 +196,9 @@ $liste_events = $query_event->fetchALL(PDO::FETCH_ASSOC);
   </div> -->
 
 </div>
+
+
+<script type="text/javascript" src="js/filtre_event.js"></script>
 
 </body>
 

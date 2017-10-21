@@ -22,6 +22,15 @@ td, th {
     padding: 8px;
 }
 
+.p_envoi_password_ok{
+	color: green;
+}
+
+.p_envoi_password_ko{
+	color: red;
+}
+
+
 /**
  * class qui permet de cacher le boutn 'Annuler ajout'
  */
@@ -36,6 +45,13 @@ td, th {
 .form_button_ajouter{
 	display: none;
 }
+
+
+
+.password_oublier{
+	text-align: right;
+}
+
 
 /**
  * Barre verticale de la page de connexion
@@ -72,7 +88,9 @@ td, th {
 	margin-left: 300px;
 	border: 1px solid black;
 	width: 900px;
+	padding: 10px;
 }
+
 
 /**
  * 
@@ -107,3 +125,59 @@ a{
   height: auto;
   /*padding: 10px 10px;*/
 }
+
+/**
+ * Gestion des pages 403 et 404
+ */
+.error_access{
+	border:1px solid #34495E;
+}
+
+.error404{
+	color:#34495E;
+}
+
+.div_admin_404{
+	height:300px;
+}
+
+/**
+ * PARTIE ADMINISTRATION
+ */
+
+.accueil_admin{
+	background-color: #AEB6BF; 
+	border-radius: 15px; 
+	height:300px;
+}
+
+.titre_accueil_admin{
+	font-size: 26px; 
+	color: white;
+}
+
+.button_update_delete{
+	background-color:#AEB6BF;
+	border:1px solid #AEB6BF;
+}
+
+.button_remove{
+	color: red;
+}
+
+.glyphicon_maj{
+	color: blue;
+}
+
+.message_ok{
+	text-align:left;
+	color:green;
+	border:1px solid green
+}
+
+.message_ko{
+	text-align:left;
+	color:red;
+	border:1px solid red;
+}
+

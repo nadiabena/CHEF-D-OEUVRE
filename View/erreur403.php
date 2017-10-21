@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>403 Access denied</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div class="container error_access">
+		<h1 class="error404">403 Access denied</h1>
+		<p class="error404">Désolé, l'accés est refusé!
+		<br/>Retournez sur la <a href="http://localhost/public/CHEF-D-OEUVRE/">page d'accueil</a></p>
+	</div>
+
+</body>
+</html>

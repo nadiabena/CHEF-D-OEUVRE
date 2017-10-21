@@ -2,14 +2,8 @@
 session_start();
   //connexion a la db et via le nom et prénom voir si cette personne est deja inscrite et la renvoyer vers la page 
   //deja inscrite
-  try{
-      $bdd = new PDO('mysql:host=localhost;dbname=my_upload;charset=utf8', 'root', 'user');
 
-      $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-    }catch(PDOException $e) {
-      die('Erreur : ' . $e->getMessage());
-  }
+require_once 'Model/config.php';
 
 
   //(!empty($_GET) &&
@@ -168,7 +162,7 @@ session_start();
 
   <link rel="icon" type="image/png" sizes="32x32" href="Images/becode.jpg">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" type="text/css" href="View/css/style.css">
 
 </head>
 <body>
@@ -181,7 +175,7 @@ session_start();
 
   <h1 style="padding-left: 500px; color:blue"> Bienvenue sur MyUpload de BeCode</h1>
   <br/><br/><br/>  
-  <div class="confirmation_inscription">
+  <div class="alert alert-success confirmation_inscription">
 
       <p> <br/>
         Cher BeCodeurs,<br/>

@@ -87,7 +87,7 @@ if(isset($_SESSION['maj_register_ok'])  && !empty($_SESSION['maj_register_ok']) 
 
                   <!-- <input type="hidden" name="<?php //= $value['id_promo'] ?>"> -->
 
-                 <input name="promo_checkbox[]" type="checkbox" id="id_promo_checkbox" value="promo">Ok<br>
+                 <!-- <input name="promo_checkbox[]" type="checkbox" id="id_promo_checkbox" value="promo">Ok<br> -->
 
                 </form>
 
@@ -103,7 +103,7 @@ if(isset($_SESSION['maj_register_ok'])  && !empty($_SESSION['maj_register_ok']) 
                   <?php } ?>
                           </select>
 
-                  <input type="checkbox" name="classe" value="classe">Ok<br>
+                  <!-- <input type="checkbox" name="classe" value="classe">Ok<br> -->
 
                 </form>
                 </div>

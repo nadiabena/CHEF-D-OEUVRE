@@ -1,14 +1,7 @@
 <?php
 session_start();
 
-    try{
-        $bdd = new PDO('mysql:host=localhost;dbname=my_upload;charset=utf8', 'root', 'user');
-
-        $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-      }catch(PDOException $e){
-        die('Erreur : '. $e->getMessage());
-      }
+require_once 'Model/config.php';
    
 /*
 if(empty($_GET['login_prenom']) || empty($_GET['password'])){
@@ -66,7 +59,7 @@ $liste_events = $query_event->fetchALL(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <title>MyUpload de BeCode</title>
+  <title>Galerie</title>
   <meta name="author" content="Nadia B.">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -76,7 +69,7 @@ $liste_events = $query_event->fetchALL(PDO::FETCH_ASSOC);
 
   <link rel="icon" type="image/png" sizes="32x32" href="Images/becode.jpg">
 
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="View/css/style.css">
 
 </head>
 <body>
@@ -138,7 +131,6 @@ $liste_events = $query_event->fetchALL(PDO::FETCH_ASSOC);
       </div> <!-- row -->
 
 
-
     <br/>
 
 <footer>
@@ -148,10 +140,10 @@ $liste_events = $query_event->fetchALL(PDO::FETCH_ASSOC);
               <div style="text-align:center; border-top: 1px solid white;"> 
         <br/> 
         <p style="color:white"> Suivez-nous </p> 
-        <a href="https://www.facebook.com/becode.org"> <img src="Images/facebook.png" alt="facebook" width="32px" height="32px"> </a>
-        <a href="https://twitter.com/becodeorg"> <img src="Images/twitter.png" alt="twitter" width="32px" height="32px"> </a>
-        <a href="https://www.instagram.com/becodeorg/"> <img src="Images/instagram.png" alt="instagram" width="32px" height="32px"> </a>
-        <a href="https://www.linkedin.com/company/becode.org"> <img src="Images/linkedin.png" alt="linkedin" width="32px" height="32px"> </a>
+        <a href="https://www.facebook.com/becode.org"> <img src="View/Images/footer/facebook.png" alt="facebook" width="32px" height="32px"> </a>
+        <a href="https://twitter.com/becodeorg"> <img src="View/Images/footer/twitter.png" alt="twitter" width="32px" height="32px"> </a>
+        <a href="https://www.instagram.com/becodeorg/"> <img src="View/Images/footer/instagram.png" alt="instagram" width="32px" height="32px"> </a>
+        <a href="https://www.linkedin.com/company/becode.org"> <img src="View/Images/footer/linkedin.png" alt="linkedin" width="32px" height="32px"> </a>
         <br/>
         <br/>
 
@@ -161,7 +153,7 @@ $liste_events = $query_event->fetchALL(PDO::FETCH_ASSOC);
       </div>
     </div>
     </div>
-</footer>    
+</footer>
 
 
 
@@ -198,7 +190,7 @@ $liste_events = $query_event->fetchALL(PDO::FETCH_ASSOC);
 </div>
 
 
-<script type="text/javascript" src="js/filtre_event.js"></script>
+<script type="text/javascript" src="View/js/filtre_event.js"></script>
 
 </body>
 

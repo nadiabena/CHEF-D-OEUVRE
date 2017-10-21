@@ -27,7 +27,20 @@
                           <td><?= $value['prenom_user']?></td>
                           <td><?= $value['email_user']?></td>
                           <td><?= $value['telephone']?></td>
-                          <td><?= $value['datenaissance_user']?></td>
+                          <td><?php 
+
+                                $date = explode("-", substr($value['datenaissance_user'],0,10) );
+                                $annee = $date[0];
+                                $mois = $date[1];
+                                $jour = $date[2];
+
+                                $date = $jour."/".$mois."/".$annee;
+
+                                echo $date;
+                                ?>
+                            
+
+                          </td>
                           <td><?= $value['statut']?></td>
                           <td> 
 

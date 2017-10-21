@@ -2,16 +2,16 @@
 
 require_once 'Model/config.php';
 	
-if(isset($_GET['select_promo']) && !empty($_GET['select_promo'])){
+if(isset($_POST['select_promo']) && !empty($_POST['select_promo'])){
 
-  $promo_selected = $_GET['select_promo'];
+  $promo_selected = $_POST['select_promo'];
 
   $query_boys = $bdd->query('SELECT count(*)
                              FROM students, promo, classe
                              WHERE genre = "M"
                                AND promo.id_promo = classe.id_promo
                                AND classe.id_classe = students.id_classe
-                               AND promo.promo ='.$bdd->quote($_GET['select_promo']) );
+                               AND promo.promo ='.$bdd->quote($_POST['select_promo']) );
   $nombre_boys = $query_boys->fetchALL(PDO::FETCH_ASSOC)[0];
 
 
@@ -20,7 +20,7 @@ if(isset($_GET['select_promo']) && !empty($_GET['select_promo'])){
                               WHERE genre = "F"
                                 AND promo.id_promo = classe.id_promo
                                 AND classe.id_classe = students.id_classe
-                                AND promo.promo ='.$bdd->quote($_GET['select_promo']) );
+                                AND promo.promo ='.$bdd->quote($_POST['select_promo']) );
   $nombre_girls = $query_girls->fetchALL(PDO::FETCH_ASSOC)[0];
 
 //Si on séléctionne une promo qui n'a pas encore d'eleve afficher message adéquat.. 
@@ -34,7 +34,7 @@ if(isset($_GET['select_promo']) && !empty($_GET['select_promo'])){
 	<div class="row">
         <div class="col-md-4">
 
-        <form  action="" method="GET">
+        <form  action="" method="POST">
           Promo:  <select id="id_select_promo" name="select_promo">  
                       <option value="promo">Choisissez une promo</option>
                   <?php      foreach ($liste_promos as $key => $value) {
@@ -46,7 +46,6 @@ if(isset($_GET['select_promo']) && !empty($_GET['select_promo'])){
                   
                   <input type="hidden" name="page" value="stat">  
                   <input type="submit" value="Valider" />
-
         </form>
                 <br/><br/>
         </div>
@@ -55,7 +54,7 @@ if(isset($_GET['select_promo']) && !empty($_GET['select_promo'])){
 
 
 
-<div style="border:1px solid yellow; background-color: green" id="piechart"></div>
+<div id="piechart"></div>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
@@ -68,23 +67,12 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
   ['Pourcentage', 'Boys by Girls'],
-  ['Garçons', <?= $nombre_boys['count(*)'] ?> ],             //8
-  ['Filles', <?= $nombre_girls['count(*)'] ?> ]              //3  
+  ['Garçons', <?= $nombre_boys['count(*)'] ?> ],             
+  ['Filles', <?= $nombre_girls['count(*)'] ?> ]               
 ]);
 
   // Optional; add a title and set the width and height of the chart
 var options = {'title':'<?= $promo_selected; ?> ', 'width':550, 'height':400};   //Promo 1 - Classe BXLAnderlecht 
-
-//   var options = {
-// chart: {
-// title: 'Company Performance',
-// subtitle: 'Sales, Expenses, and Profit: May-August'
-// },
-// chartArea:{
-// backgroundColor: 'red'
-// }
-// };
-
 
   // Display the chart inside the <div> element with id="piechart"
   var chart = new google.visualization.PieChart(document.getElementById('piechart'));

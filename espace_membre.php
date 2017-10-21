@@ -87,7 +87,7 @@ if(isset($_GET['login_prenom'])){
 
   <link rel="icon" type="image/png" sizes="32x32" href="Images/becode.jpg">
 
-  <link rel="stylesheet" type="text/css" href="style.css">  
+  <link rel="stylesheet" type="text/css" href="View/css/style.css">  
 </head>
 
 <body>
@@ -209,10 +209,10 @@ if(isset($_GET['login_prenom'])){
               <div style="text-align:center; border-top: 1px solid white;"> 
         <br/>
         <p style="color:white"> Suivez-nous </p> 
-        <a href="https://www.facebook.com/becode.org"> <img src="Images/facebook.png" alt="facebook" width="32px" height="32px"> </a>
-        <a href="https://twitter.com/becodeorg"> <img src="Images/twitter.png" alt="twitter" width="32px" height="32px"> </a>
-        <a href="https://www.instagram.com/becodeorg/"> <img src="Images/instagram.png" alt="instagram" width="32px" height="32px"> </a>
-        <a href="https://www.linkedin.com/company/becode.org"> <img src="Images/linkedin.png" alt="linkedin" width="32px" height="32px"> </a>
+        <a href="https://www.facebook.com/becode.org"> <img src="View/Images/footer/facebook.png" alt="facebook" width="32px" height="32px"> </a>
+        <a href="https://twitter.com/becodeorg"> <img src="View/Images/footer/twitter.png" alt="twitter" width="32px" height="32px"> </a>
+        <a href="https://www.instagram.com/becodeorg/"> <img src="View/Images/footer/instagram.png" alt="instagram" width="32px" height="32px"> </a>
+        <a href="https://www.linkedin.com/company/becode.org"> <img src="View/Images/footer/linkedin.png" alt="linkedin" width="32px" height="32px"> </a>
         <br/>
         <br/>
         <p style="color:white"> Powered by Nadia </p>

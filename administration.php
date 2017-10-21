@@ -37,15 +37,7 @@ if(!isset($_POST['login_prenom']) || !isset($_POST['password']) || empty($_POST[
 //}
 
 
-
-    try{
-        $bdd = new PDO('mysql:host=localhost;dbname=my_upload;charset=utf8', 'root', 'user');
-
-        $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-      }catch(PDOException $e){
-        die('Erreur : '. $e->getMessage());
-      }
+require_once 'Model/config.php';
 
   //Listes des administrateurs:
   // $query_administrateurs = $bdd->query('SELECT *
@@ -76,7 +68,7 @@ $query_promos = $bdd->query('SELECT * FROM promo');
 $liste_promos = $query_promos->fetchALL(PDO::FETCH_ASSOC);
 
 //Liste des classes
-$query_classes = $bdd->query('SELECT classe, promo 
+$query_classes = $bdd->query('SELECT id_classe, classe, promo 
                               FROM classe, promo
                               WHERE classe.id_promo = promo.id_promo');
 $liste_classes = $query_classes->fetchALL(PDO::FETCH_ASSOC);
@@ -130,11 +122,11 @@ $liste_classes = $query_classes->fetchALL(PDO::FETCH_ASSOC);
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="View/font-awesome/css/font-awesome.min.css">
 
   <link rel="icon" type="image/png" sizes="32x32" href="Images/becode.jpg">
 
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="View/css/style.css">
 
 </head>
 <body>
@@ -205,17 +197,17 @@ $liste_classes = $query_classes->fetchALL(PDO::FETCH_ASSOC);
                                     include 'vue_students.php';
                                     break;  
                       case 'classes': 
-                                    include 'vue_classes.php';
+                                    include 'Controller/vue_classes.php';
                                     break;
                       case 'archive': 
                                     //include 'vue_archive.php';
                                     break;
-
                       default:
+                                    include 'vue_error404.php';
                                     break;
                                   
                   }
-              }else if(!isset($_GET['page'])){
+              }else if(!isset($_GET['page']) || empty($_GET['page'])){
                 include 'vue_bienvenue_admin.php';
               }
 
@@ -239,11 +231,11 @@ $liste_classes = $query_classes->fetchALL(PDO::FETCH_ASSOC);
       <div class="col-md-12">
               <div style="text-align:center; border-top: 1px solid white;"> 
         <br/> 
-        <p style="color:white"> Suivez-nous </p> 
-        <a href="https://www.facebook.com/becode.org"> <img src="Images/facebook.png" alt="facebook" width="32px" height="32px"> </a>
-        <a href="https://twitter.com/becodeorg"> <img src="Images/twitter.png" alt="twitter" width="32px" height="32px"> </a>
-        <a href="https://www.instagram.com/becodeorg/"> <img src="Images/instagram.png" alt="instagram" width="32px" height="32px"> </a>
-        <a href="https://www.linkedin.com/company/becode.org"> <img src="Images/linkedin.png" alt="linkedin" width="32px" height="32px"> </a>
+        <p style="color:white"> Suivez-nous </p>
+        <a href="https://www.facebook.com/becode.org"> <img src="View/Images/footer/facebook.png" alt="facebook" width="32px" height="32px"> </a>
+        <a href="https://twitter.com/becodeorg"> <img src="View/Images/footer/twitter.png" alt="twitter" width="32px" height="32px"> </a>
+        <a href="https://www.instagram.com/becodeorg/"> <img src="View/Images/footer/instagram.png" alt="instagram" width="32px" height="32px"> </a>
+        <a href="https://www.linkedin.com/company/becode.org"> <img src="View/Images/footer/linkedin.png" alt="linkedin" width="32px" height="32px"> </a>
         <br/>
         <br/>
 
@@ -289,7 +281,8 @@ $liste_classes = $query_classes->fetchALL(PDO::FETCH_ASSOC);
 
 </div>
 
-<script type="text/javascript" src="js/search.js"></script>
+<script type="text/javascript" src="View/js/search.js"></script>
+<script type="text/javascript" src="View/js/vue_classes.js"></script>
 
 </body>
 

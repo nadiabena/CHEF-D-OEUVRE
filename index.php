@@ -18,14 +18,22 @@ if (isset($_SESSION['error_connexion'])) { // Si ma session error existe alors
   <title>MyUpload BeCode</title>
   <meta name="author" content="Nadia B.">
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="Content-Type" content="UTF-8">
+  <meta name="Content-Language" content="fr">
+  <meta name="Description" content="BeCode | Upload de photos">
+  <meta name="Keywords" content="Upload, photos, BeCode, inside">
+  <meta name="Publisher" content="BeCode"> 
+  <meta name="Subject" content="Upload de BeCode">
+  <meta name="Identifier-Url" content="">
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
-  <link rel="icon" type="image/png" sizes="32x32" href="Images/becode.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="View/Images/becode.jpg">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" type="text/css" href="View/css/style.css">
 
 </head>
 <body>
@@ -37,9 +45,9 @@ if (isset($_SESSION['error_connexion'])) { // Si ma session error existe alors
     <a class="lien_langue" href="">En</a>  
   </div>
 
-  <h1 style="padding-left: 500px; color:blue"> Bienvenue sur MyUpload de BeCode</h1>
+  <h1 style="padding-left: 550px; color:blue"> Bienvenue sur MyUpload de BeCode</h1>
 
-  <div style = "margin-top:50px; border:1px solid black; height:300px; width:350px" class="container" id="connexion_se_connecter">
+  <div style = "margin-top:50px; border:1px solid black; height:330px; width:350px" class="container" id="connexion_se_connecter">
     <form name="connexion" action="application.php" method="POST">
 
       <div> <h4 style="color:blue">Connexion</h4> </div>
@@ -68,6 +76,9 @@ if (isset($_SESSION['error_connexion'])) { // Si ma session error existe alors
       <input type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" value="Nouveau utilisateur?"> <!-- s'inscrire -->
 
       <input style ="text-align:center" type="submit" class="btn btn-primary" value="Se connecter">
+      
+      <br/><br/>
+      <p class="password_oublier"> <a href="password_oublier.php">Mot de passe oublié?</a> </p>
 
     </form>  
    </div>

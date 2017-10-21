@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 
   //(!empty($_GET) &&
   // if( isset($_GET['confirm_password']) && isset($_GET['password']) && isset($_GET['email'])  && isset($_GET['login_prenom']) && isset($_GET['login_nom']) &&
@@ -23,6 +23,22 @@ session_start();
   //   }
   // }
 
+// unset($_SESSION['envoi_password_ok']);  
+// unset($_SESSION['envoi_password_ko']);
+
+
+$envoi_password_ok = "";
+$envoi_password_ko = "";
+
+if(isset($_GET['email']) && !empty($_GET['email'])){
+  //$_SESSION["envoi_password_ok"] = "Votre demande a bien été prise en compte, vous recevrez un nouveau mot de passe sous peu!";
+  $envoi_password_ok = "Votre demande a bien été prise en compte, vous recevrez un nouveau mot de passe sous peu!";
+}else if(isset($_GET['email']) && empty($_GET['email'])){
+  //$_SESSION["envoi_password_ko"] = "Adresse email vide!";
+  $envoi_password_ko = "Adresse email vide!";
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -45,22 +61,39 @@ session_start();
 
   <div class="container_langue">
     <a class="lien_langue" href="">Fr</a>
-    <a class="lien_langue" href="">Nl</a>  
-    <a class="lien_langue" href="">En</a>  
+    <a class="lien_langue" href="">Nl</a>
+    <a class="lien_langue" href="">En</a>
   </div>
 
   <h1 style="padding-left: 500px; color:blue"> Bienvenue sur MyUpload de BeCode</h1>
   <br/><br/><br/>  
-  <div class="alert alert-danger confirmation_inscription">
+  <div class="confirmation_inscription">
 
-      <p> <br/>     
-        Bonjour <?= $_SESSION['prenom_student'].' '. $_SESSION['nom_student'].'!'; ?> <br/>
+      <br/>
+        <?php if(!empty($envoi_password_ok)){ 
+           
+        ?>
+                <div class="alert alert-success p_envoi_password_ok" role="alert"> <?= $envoi_password_ok; ?> </div>
+
+        <?php }else if(!empty($envoi_password_ko)){ 
+                
+        ?>
+              <div class="alert alert-danger p_envoi_password_ko" role="alert">  <?= $envoi_password_ko; ?> </div>
+        <?php } ?>
+
+        Veuillez entrer votre adresse email sur lequel vous recevrez les directives pour réinitialiser votre
+        mot de passe. <br/><br/>
+
+        <form action="" method="GET">
+            <div class="input-group">
+              <input name="email" type="text" class="form-control" id="id_email" placeholder="Entrez votre adresse email">
+              <input type="submit" class="btn btn-primary" value="Envoyer">
+            </div>
+        </form>
+
         <br/>
-        Vous êtes déjà inscrit(e), donc vous ne pouvez pas à nouveau effectuer une réinscription.<br/><br/>
-        Vous pouvez, par contre, directement vous connecter sur la plateforme!<br/>
-        <br/>
-                      <p class="p_equipe_administrative">   L'équipe administrative. </p>
-      </p>
+          <p class="p_equipe_administrative">   L'équipe administrative. </p>
+     
   </div>
 
 </body>

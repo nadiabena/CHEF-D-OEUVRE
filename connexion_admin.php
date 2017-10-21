@@ -36,7 +36,7 @@ if (isset($_SESSION['error_connexion'])) { // Si ma session error existe alors
   
   <link rel="icon" type="image/png" sizes="32x32" href="Images/becode.jpg">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" type="text/css" href="View/css/style.css">
 
 </head>
 <body>

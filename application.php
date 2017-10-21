@@ -1,14 +1,9 @@
 <?php
 session_start();
 
-    try{
-        $bdd = new PDO('mysql:host=localhost;dbname=my_upload;charset=utf8', 'root', 'user');
 
-        $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-      }catch(PDOException $e){
-        die('Erreur : '. $e->getMessage());
-      }
+require_once 'Model/config.php';
+
    
 /*
 if(empty($_GET['login_prenom']) || empty($_GET['password'])){
@@ -112,7 +107,7 @@ if(isset($_GET['login_prenom']) ){ //&& isset
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="View/css/style.css">
 
 </head>
 <body>
@@ -172,6 +167,13 @@ if(isset($_GET['login_prenom']) ){ //&& isset
                       foreach ($liste_photo_une as $key => $value) { ?>
                       <div style="padding-right:5px;" class="col-xs-3 col-md-3 shadow">
                         <img class="" style="box-shadow: 5px 5px 10px #888888;" src="<?= $value['image']?>" height="auto" width="128"/>
+
+                        <button type="button">
+                            <a href="<?= $value['image']?>" download>
+                              <span class="glyphicon glyphicon-download"></span>
+                            </a>
+                        </button>
+
                       </div>
               <?php } }?>
 
@@ -200,10 +202,10 @@ if(isset($_GET['login_prenom']) ){ //&& isset
               <div style="text-align:center; border-top: 1px solid white;"> 
         <br/> 
         <p style="color:white"> Suivez-nous </p> 
-        <a href="https://www.facebook.com/becode.org"> <img src="Images/facebook.png" alt="facebook" width="32px" height="32px"> </a>
-        <a href="https://twitter.com/becodeorg"> <img src="Images/twitter.png" alt="twitter" width="32px" height="32px"> </a>
-        <a href="https://www.instagram.com/becodeorg/"> <img src="Images/instagram.png" alt="instagram" width="32px" height="32px"> </a>
-        <a href="https://www.linkedin.com/company/becode.org"> <img src="Images/linkedin.png" alt="linkedin" width="32px" height="32px"> </a>
+        <a href="https://www.facebook.com/becode.org"> <img src="View/Images/footer/facebook.png" alt="facebook" width="32px" height="32px"> </a>
+        <a href="https://twitter.com/becodeorg"> <img src="View/Images/footer/twitter.png" alt="twitter" width="32px" height="32px"> </a>
+        <a href="https://www.instagram.com/becodeorg/"> <img src="View/Images/footer/instagram.png" alt="instagram" width="32px" height="32px"> </a>
+        <a href="https://www.linkedin.com/company/becode.org"> <img src="View/Images/footer/linkedin.png" alt="linkedin" width="32px" height="32px"> </a>
         <br/>
         <br/>
 

@@ -11,7 +11,7 @@ $_SESSION = array();
 session_destroy();
 
 //Redirige le user vers la page de connexion
-header('Location: index.php');
+header('Location: ../index.php');
 die();
 
 ?>

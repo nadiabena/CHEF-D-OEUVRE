@@ -3,7 +3,7 @@ session_start();
   //connexion a la db et via le nom et prénom voir si cette personne est deja inscrite et la renvoyer vers la page 
   //deja inscrite
 
-require_once 'Model/config.php';
+require_once 'Model/connect.php';
 
 
   //(!empty($_GET) &&

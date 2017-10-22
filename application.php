@@ -2,7 +2,7 @@
 session_start();
 
 
-require_once 'Model/config.php';
+require_once 'Model/connect.php';
 
    
 /*
@@ -65,37 +65,10 @@ if(isset($_GET['login_prenom']) ){ //&& isset
   $liste_photo_une = $query_photo_une->fetchALL(PDO::FETCH_ASSOC);
 
 
-/*
-  public function select_priority_events(){
-    $query = 'SELECT *
-          FROM events
-          WHERE event_priority = 1
-          AND event_date >= NOW()
-          ORDER BY event_date
-          LIMIT 3';
-    $result = $this->_db->query($query);
-    $tab = array();
-    if($result->rowcount()!=0){
-      while($row = $result->fetch()){
-        $address = Db::getInstance()->select_address_with_id($row->event_address);
-        $tab[] = new Event($row->event_id, $row->event_name, $row->event_date, $row->event_descri, $row->event_image, $row->event_priority, $address);
-      }
-    }
-    return $tab;
-  } 
-  */
-
-
-
-
-
-
-
-
-
-
-
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -112,6 +85,8 @@ if(isset($_GET['login_prenom']) ){ //&& isset
 </head>
 <body>
 
+
+
 <div style="min-height: 100%;" class="content" >
   <div  style="padding: 0;
   padding-bottom: 50px;" class="content-inside" >
@@ -121,7 +96,7 @@ if(isset($_GET['login_prenom']) ){ //&& isset
     <div class="row">
       <div class="col-md-12">
           <div style="text-align:right;"> <!--  class="container_espace_membre" -->
-            <p> <a style="color:white" class="espace_membre" href="espace_membre.php"> Espace membre</a> </p> 
+            <p> <a style="color:white" class="espace_membre" href="Controller/espace_membre.php"> Espace membre</a> </p> 
           </div>
       </div>
     </div>
@@ -135,7 +110,7 @@ if(isset($_GET['login_prenom']) ){ //&& isset
 
     <div class="row">  
       <div class="col-md-12">
-        <p style="margin-right:100px; text-align:right ;color:white"> Bonjour, <?= $_SESSION['login_prenom'] ?>  <a style="color:white" href="deconnexion.php">déconnexion</a> </p>
+        <p style="margin-right:100px; text-align:right ;color:white"> Bonjour, <?= $_SESSION['login_prenom'] ?>  <a style="color:white" href="Model/deconnexion.php">déconnexion</a> </p>
         <br/><br/><br/>
       </div>
     </div>
@@ -166,7 +141,20 @@ if(isset($_GET['login_prenom']) ){ //&& isset
               <?php }else{
                       foreach ($liste_photo_une as $key => $value) { ?>
                       <div style="padding-right:5px;" class="col-xs-3 col-md-3 shadow">
-                        <img class="" style="box-shadow: 5px 5px 10px #888888;" src="<?= $value['image']?>" height="auto" width="128"/>
+                        <img class="" style="box-shadow: 5px 5px 10px #888888; cursor:zoom-in" src="<?= $value['image']?>" height="auto" width="100%" onclick="document.getElementById('modal01').style.display='block'"/>
+
+
+<a id="single_1" href="<?= $value['image']?>" title="">
+  <img src="<?= $value['image']?>" width="10%" alt="" />
+</a>
+        
+<!--                          <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
+                            <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+                              <div class="w3-modal-content w3-animate-zoom">
+                                <img src="<?//= $value['image']?>" style="width:100%">
+                              </div>
+                          </div> -->
+ 
 
                         <button type="button">
                             <a href="<?= $value['image']?>" download>
@@ -178,7 +166,8 @@ if(isset($_GET['login_prenom']) ){ //&& isset
               <?php } }?>
 
 
-                  
+
+
 
             </div>
 
@@ -210,7 +199,7 @@ if(isset($_GET['login_prenom']) ){ //&& isset
         <br/>
 
         <p style="color:white"> Powered by Nadia </p>
-        <p style="color:white"> Copyright 2017 | All rights reserved <a style="color:white" href="becodeorg@gmail.com">becodeorg@gmail.com </a> </p>
+        <p style="color:white"> Copyright &copy; 2017 | All rights reserved <a style="color:white" href="becodeorg@gmail.com">becodeorg@gmail.com </a> </p>
           </div>
       </div>
     </div>
@@ -250,6 +239,18 @@ if(isset($_GET['login_prenom']) ){ //&& isset
   </div> -->
 
 </div>
+
+
+<script>
+$(document).ready(function() {
+    $("#single_1").fancybox({
+          helpers: {
+              title : {
+                  type : 'float'
+              }
+          }
+      });
+</script>
 
 </body>
 

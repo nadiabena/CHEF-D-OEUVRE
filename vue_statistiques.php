@@ -1,6 +1,6 @@
 <?php 
 
-require_once 'Model/config.php';
+require_once 'Model/connect.php';
 	
 if(isset($_POST['select_promo']) && !empty($_POST['select_promo'])){
 
@@ -32,7 +32,7 @@ if(isset($_POST['select_promo']) && !empty($_POST['select_promo'])){
 
 <div class="container">
 	<div class="row">
-        <div class="col-md-4">
+        <div class="col-md-12">
 
         <form  action="" method="POST">
           Promo:  <select id="id_select_promo" name="select_promo">  
@@ -48,6 +48,10 @@ if(isset($_POST['select_promo']) && !empty($_POST['select_promo'])){
                   <input type="submit" value="Valider" />
         </form>
                 <br/><br/>
+          
+        <div id="message">
+        </div>  
+
         </div>
 	</div>
 </div>
@@ -65,18 +69,23 @@ google.charts.setOnLoadCallback(drawChart);
 
 // Draw the chart and set the chart values
 function drawChart() {
-  var data = google.visualization.arrayToDataTable([
-  ['Pourcentage', 'Boys by Girls'],
-  ['Garçons', <?= $nombre_boys['count(*)'] ?> ],             
-  ['Filles', <?= $nombre_girls['count(*)'] ?> ]               
-]);
+  if(<?= $nombre_boys['count(*)'] ?> !=0 || <?= $nombre_girls['count(*)'] ?> != 0){
+      var data = google.visualization.arrayToDataTable([
+                 ['Pourcentage', 'Boys by Girls'],
+                 ['Garçons', <?= $nombre_boys['count(*)'] ?> ],             
+                 ['Filles', <?= $nombre_girls['count(*)'] ?> ]               
+                ]);
+      // Optional; add a title and set the width and height of the chart
+      var options = {'title':'<?= $promo_selected; ?> ', 'width':550, 'height':400};   //Promo 1 - Classe BXLAnderlecht 
 
-  // Optional; add a title and set the width and height of the chart
-var options = {'title':'<?= $promo_selected; ?> ', 'width':550, 'height':400};   //Promo 1 - Classe BXLAnderlecht 
+      // Display the chart inside the <div> element with id="piechart"
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+      chart.draw(data, options);
+  }else{
+    document.getElementById("message").innerHTML = "Aucune donnée n'est disponible pour la promo séléctionné";
+  }
 
-  // Display the chart inside the <div> element with id="piechart"
-  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-  chart.draw(data, options);
+
 
 }
 </script>

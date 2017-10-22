@@ -37,7 +37,7 @@ if(!isset($_POST['login_prenom']) || !isset($_POST['password']) || empty($_POST[
 //}
 
 
-require_once 'Model/config.php';
+require_once 'Model/connect.php';
 
   //Listes des administrateurs:
   // $query_administrateurs = $bdd->query('SELECT *
@@ -73,9 +73,12 @@ $query_classes = $bdd->query('SELECT id_classe, classe, promo
                               WHERE classe.id_promo = promo.id_promo');
 $liste_classes = $query_classes->fetchALL(PDO::FETCH_ASSOC);
 
-// SELECT classe 
-// FROM `promo` 
-// WHERE promo = "promo-1"
+//Liste des photos
+$query_photos = $bdd->query('SELECT * FROM photo');
+$liste_photos = $query_photos->fetchALL(PDO::FETCH_ASSOC);
+
+
+
 
 
 
@@ -141,7 +144,7 @@ $liste_classes = $query_classes->fetchALL(PDO::FETCH_ASSOC);
     <div class="row">  
       <div class="col-md-12">
         <br/>
-        <p style="margin-right:100px; text-align:right ;color:white"> Bonjour, <?= $_SESSION['login'] ?>  <a style="color:white" href="deconnexion.php">déconnexion</a> </p>
+        <p style="margin-right:100px; text-align:right ;color:white"> Bonjour, <?= $_SESSION['login'] ?>  <a style="color:white" href="Model/deconnexion.php">déconnexion</a> </p>
         <br/>
       </div>
     </div>
@@ -162,10 +165,16 @@ $liste_classes = $query_classes->fetchALL(PDO::FETCH_ASSOC);
           <p> <i class="fa fa-users" aria-hidden="true"></i> <a href="administration.php?page=classes"> Gestion des classes </a></p>           
           <p> <i class="fa fa-users" aria-hidden="true"></i> <a href="administration.php?page=students"> Gestion des étudiants </a></p>
           <p> <i class="fa fa-camera-retro" aria-hidden="true"></i> <a href="administration.php?page=event"> Gestion des événements </a></p>         
-          <p> <i class="fa fa-cog" aria-hidden="true"></i> <a href=""> Gestion du contenu du site </a></p>
+          <p id="menu"> <i class="fa fa-cog" aria-hidden="true"></i> Gestion du contenu du site </p>
+
+            <div id="sous_menu" style="padding-left: 30px; display: none;">
+                <p id="" style="font-size:12px"> <i class="fa fa-cog" aria-hidden="true"></i> <a href="administration.php?page=add_photo_event"> Ajouter photo à un événement </a></p>               
+                <p id="sous_menu_photo" style="font-size:12px"> <i class="fa fa-file-image-o" aria-hidden="true"></i> <a href="administration.php?page=photo"> Gestion des photos à la UNE </a></p>
+            </div>
+
           <p> <i class="fa fa-user" aria-hidden="true"></i> <a href="administration.php?page=admin"> Gestion des administrateurs </a></p>
           <p> <i class="fa fa-bar-chart" aria-hidden="true"></i> <a href="administration.php?page=stat"> Statistiques </a></p>
-                    
+                   
           <p> <span class="glyphicon glyphicon-folder-close"></span> <a href="administration.php?page=archive"> Archives </a> </p>
 
         </div>    
@@ -180,25 +189,31 @@ $liste_classes = $query_classes->fetchALL(PDO::FETCH_ASSOC);
                 $page = $_GET['page'];
                     switch($page){
                       case 'admin':
-                                    unset($_SESSION['maj_ok']);
-                                    unset($_SESSION['suppression_ok']);   
+                                    // unset($_SESSION['maj_ok']);
+                                    // unset($_SESSION['suppression_ok']);   
                                     include 'vue_liste_administrateurs.php';
                                     break;
                       case 'event': 
-                                    include 'vue_liste_evenements.php';
+                                    include 'Controller/vue_liste_evenements.php';
                                     break;
                       case 'stat': 
                                     include 'vue_statistiques.php';
                                     break;   
                       case 'promos': 
-                                    include 'vue_promos.php';
+                                    include 'Controller/vue_promos.php';
                                     break;   
                       case 'students': 
-                                    include 'vue_students.php';
+                                    include 'Controller/vue_students.php';
                                     break;  
                       case 'classes': 
                                     include 'Controller/vue_classes.php';
                                     break;
+                      case 'add_photo_event':          
+                                    include 'vue_add_photo_event.php';
+                                    break;
+                      case 'photo':          
+                                    include 'vue_photo.php';
+                                    break;                                    
                       case 'archive': 
                                     //include 'vue_archive.php';
                                     break;
@@ -240,7 +255,7 @@ $liste_classes = $query_classes->fetchALL(PDO::FETCH_ASSOC);
         <br/>
 
         <p style="color:white"> Powered by Nadia </p>
-        <p style="color:white"> Copyright 2017 | All rights reserved <a style="color:white" href="becodeorg@gmail.com">becodeorg@gmail.com </a> </p>
+        <p style="color:white"> Copyright &copy; 2017 | All rights reserved <a style="color:white" href="becodeorg@gmail.com">becodeorg@gmail.com </a> </p>
           </div>
       </div>
     </div>
@@ -283,6 +298,61 @@ $liste_classes = $query_classes->fetchALL(PDO::FETCH_ASSOC);
 
 <script type="text/javascript" src="View/js/search.js"></script>
 <script type="text/javascript" src="View/js/vue_classes.js"></script>
+<script type="text/javascript" src="View/js/vue_promos.js"></script>
+<script type="text/javascript" src="View/js/vue_students.js"></script>
+<script type="text/javascript" src="View/js/vue_liste_evenements.js"></script>
+
+<script type="text/javascript">
+  
+  // document.getElementById("menu").addEventListener("click", display_sous_menu);
+
+  // function display_sous_menu() {
+  //     document.getElementById("sous_menu").removeAttribute("class");
+  //     document.getElementById("sous_menu").style.display = 'block';
+  // }
+
+</script>
+
+<script>
+  // $(document).ready(function(){
+  //     $("#menu").click(function(){
+  //         //$("#sous_menu").toggle();
+  //         $("#sous_menu").toggle();
+  //     });
+  // });
+
+
+$(document).ready(function(){
+    $("#menu").click(function(){
+        if($("#sous_menu").css('display') == 'none'){
+            $("#sous_menu").css('display', 'block');
+        }else{
+          $("#sous_menu").css('display', 'none');
+        }
+        //$("#sous_menu").removeClass("cacher");
+        //$("#sous_menu").css('visibility','visible');
+    });
+
+
+    //Marche pas!
+    $('#sous_menu_photo').click(function(){
+      $("#sous_menu").css('display', 'block');
+    });
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+</script>
 
 </body>
 

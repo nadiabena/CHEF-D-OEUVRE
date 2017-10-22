@@ -28,14 +28,7 @@
  * Insert du mot de passe dans la DB et du statut resgiter en attente == 0 (1 == enregistré)
  */
 
-  try{
-      $this->_db = new PDO('mysql:host=localhost;dbname=my_upload;charset=utf8', 'root', 'user');
-
-      $this->_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $this->_db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-    } catch(PDOException $e) {
-      die('Erreur : ' . $e->getMessage());
-    }
+require_once 'Model/connect.php';
 
 
 

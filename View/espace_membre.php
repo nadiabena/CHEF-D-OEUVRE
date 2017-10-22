@@ -1,78 +1,3 @@
-<?php
-session_start();
-
-require_once 'Model/config.php';
-
-if(isset($_GET['login_prenom'])){
-  $login = $_GET['login_prenom'];
-}
-
-
-
-    // try{
-    //     $bdd = new PDO('mysql:host=localhost;dbname=my_upload;charset=utf8', 'root', 'user');
-
-    //     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //     $bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-    //   }catch(PDOException $e){
-    //     die('Erreur : '. $e->getMessage());
-    //   }
-
- //select pour récupérer le nom et prénom du student
-  $var1 = $_SESSION['login_prenom'];
-  $var2 = $_SESSION['password'];
-  // $query_student = $bdd->query('SELECT nom, prenom
-  //                               FROM students
-  //                               WHERE prenom = '. $bdd->quote($var1) .
-  //                              ' AND password_students ='. $bdd->quote($var2) );
-
-  //var_dump($query_student);
-
-  // $student_connected = [];
-  // while ($donnees = $query_student->fetch()){
-  //   $student_connected[] = array('nom' => $donnees['nom'],
-  //                                'prenom' => $donnees['prenom'] );
-  // }
-
-
-
-  $query_student = "SELECT nom, prenom, email_students, promo, password_students
-                    FROM students
-                    WHERE prenom =". $bdd->quote($var1).
-                   " AND password_students =". $bdd->quote($var2);
-  
-  $statement = $bdd->query($query_student);
-  $student = $statement->fetchALL(PDO::FETCH_ASSOC);
-
-
-
-  //Mise à jour des données:
-  $_SESSION["error_pwd_and_conf"] = "";
-  if(isset($_GET['email']) && isset($_GET['password']) && isset($_GET['confirm_password'])){
-      //tester si les 2 mots de passe saissies sont identiques verifier que ce n'est pas vide les entrees
-      if( $_GET['password'] !== $_GET['confirm_password'] ){ //!empty($_GET['password']) && !empty($_GET['confirm_password'])
-        $_SESSION["error_pwd_and_conf"] = 'Erreur! Le mot de passe ne correspond pas la confirmation de mot de passe!';
-        //echo 'error';
-      }else{
-        $_SESSION["error_pwd_and_conf"] = "";
-        $bdd->prepare('UPDATE students 
-                       SET email_students = '.$bdd->quote($_GET['email']).' , password_students ='. $bdd->quote($_GET['password']) .
-                      ' WHERE nom ='. $bdd->quote($student[0]['nom']). 
-                      ' AND prenom ='. $bdd->quote($student[0]['prenom']) )->execute(); //->execute()
-      }
-  }
-
-  $query_student = "SELECT nom, prenom, email_students, promo, password_students
-                    FROM students
-                    WHERE prenom =". $bdd->quote($var1).
-                   " AND password_students =". $bdd->quote($var2);
-  
-  $statement = $bdd->query($query_student);
-  $student = $statement->fetchALL(PDO::FETCH_ASSOC);
-
-
-
-?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -87,7 +12,7 @@ if(isset($_GET['login_prenom'])){
 
   <link rel="icon" type="image/png" sizes="32x32" href="Images/becode.jpg">
 
-  <link rel="stylesheet" type="text/css" href="View/css/style.css">  
+  <link rel="stylesheet" type="text/css" href="css/style.css">  
 </head>
 
 <body>
@@ -108,7 +33,7 @@ if(isset($_GET['login_prenom'])){
 
     <div class="row">  
       <div class="col-md-12">
-        <p style="margin-right:100px; text-align:right ;color:white"> Bonjour, <?= $_SESSION['login_prenom']; ?>  <a style="color:white" href="deconnexion.php">déconnexion</a> </p>
+        <p style="margin-right:100px; text-align:right ;color:white"> Bonjour, <?= $_SESSION['login_prenom']; ?>  <a style="color:white" href="../Model/deconnexion.php">déconnexion</a> </p>
         <br/>
       </div>
     </div>
@@ -187,7 +112,7 @@ if(isset($_GET['login_prenom'])){
                 <div style="text-align:right">
                   <input type="submit" id="id_enregistrer" style ="margin-left:160px" class="btn btn-success" value="Mettre à jour">
 
-                  <a href="application.php"> <button type="button" class="btn btn-default">Retour</button> </a> <!-- Récupérer le login et le mot de passe -->
+                  <a href="../application.php"> <button type="button" class="btn btn-default">Retour</button> </a> <!-- Récupérer le login et le mot de passe -->
                 </div>
 
               </form>
@@ -209,14 +134,14 @@ if(isset($_GET['login_prenom'])){
               <div style="text-align:center; border-top: 1px solid white;"> 
         <br/>
         <p style="color:white"> Suivez-nous </p> 
-        <a href="https://www.facebook.com/becode.org"> <img src="View/Images/footer/facebook.png" alt="facebook" width="32px" height="32px"> </a>
-        <a href="https://twitter.com/becodeorg"> <img src="View/Images/footer/twitter.png" alt="twitter" width="32px" height="32px"> </a>
-        <a href="https://www.instagram.com/becodeorg/"> <img src="View/Images/footer/instagram.png" alt="instagram" width="32px" height="32px"> </a>
-        <a href="https://www.linkedin.com/company/becode.org"> <img src="View/Images/footer/linkedin.png" alt="linkedin" width="32px" height="32px"> </a>
+        <a href="https://www.facebook.com/becode.org"> <img src="Images/footer/facebook.png" alt="facebook" width="32px" height="32px"> </a>
+        <a href="https://twitter.com/becodeorg"> <img src="Images/footer/twitter.png" alt="twitter" width="32px" height="32px"> </a>
+        <a href="https://www.instagram.com/becodeorg/"> <img src="Images/footer/instagram.png" alt="instagram" width="32px" height="32px"> </a>
+        <a href="https://www.linkedin.com/company/becode.org"> <img src="Images/footer/linkedin.png" alt="linkedin" width="32px" height="32px"> </a>
         <br/>
         <br/>
         <p style="color:white"> Powered by Nadia </p>
-        <p style="color:white"> Copyright 2017 | All rights reserved <a style="color:white" href="becodeorg@gmail.com">becodeorg@gmail.com </a> </p>
+        <p style="color:white"> Copyright &copy; 2017 | All rights reserved <a style="color:white" href="becodeorg@gmail.com">becodeorg@gmail.com </a> </p>
           </div>
       </div>
     </div>
@@ -234,38 +159,8 @@ if(isset($_GET['login_prenom'])){
 </div>
 
 
-<script>
-  $(document).ready(function(){
-
-function myFunction() {
-    var x = document.getElementById("myDIV");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-
-
-
-    // $("#id_enregistrer").click(function(){
-    //     $("p").toggle();
-    // });
-
-
-
-
-
-
-    function enregistrer_modif(){
-
-    }
-   
-  });
-</script>
 
 
 </body>
 
 </html>
-

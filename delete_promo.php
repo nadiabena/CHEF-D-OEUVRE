@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once 'Model/config.php';
+require_once 'Model/connect.php';
 
     if(!empty($_GET['id']) && isset($_GET['id'])){
     	$id_promo = $_GET['id'];

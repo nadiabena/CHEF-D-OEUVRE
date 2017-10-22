@@ -4,7 +4,7 @@
 
 <?php
 
-require_once 'Model/config.php';
+require_once 'Model/connect.php';
 
 if(isset($_GET['lettres'])){
 	$lettres = $_GET['lettres'];

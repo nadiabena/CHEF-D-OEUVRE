@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once 'Model/config.php';
+require_once 'Model/connect.php';
    
 /*
 if(empty($_GET['login_prenom']) || empty($_GET['password'])){
@@ -83,7 +83,7 @@ $liste_events = $query_event->fetchALL(PDO::FETCH_ASSOC);
     <div class="row">
         <div class="col-md-12">
           <div style="text-align:right;"> <!--  class="container_espace_membre" -->
-            <p> <a style="color:white" class="espace_membre" href="espace_membre.php"> Espace membre</a> </p> 
+            <p> <a style="color:white" class="espace_membre" href="Controller/espace_membre.php"> Espace membre</a> </p> 
           </div>
         </div>
     </div>
@@ -97,7 +97,7 @@ $liste_events = $query_event->fetchALL(PDO::FETCH_ASSOC);
 
     <div class="row">
       <div class="col-md-12">
-        <p style="margin-right:100px; text-align:right ;color:white"> Bonjour, <?= $_SESSION['login_prenom'] ?>  <a style="color:white" href="deconnexion.php">déconnexion</a> </p>
+        <p style="margin-right:100px; text-align:right ;color:white"> Bonjour, <?= $_SESSION['login_prenom'] ?>  <a style="color:white" href="Model/deconnexion.php">déconnexion</a> </p>
         <br/><br/><br/>
       </div>
     </div>
@@ -148,7 +148,7 @@ $liste_events = $query_event->fetchALL(PDO::FETCH_ASSOC);
         <br/>
 
         <p style="color:white"> Powered by Nadia </p>
-        <p style="color:white"> Copyright 2017 | All rights reserved <a style="color:white" href="becodeorg@gmail.com">becodeorg@gmail.com </a> </p>
+        <p style="color:white"> Copyright &copy; 2017 | All rights reserved <a style="color:white" href="becodeorg@gmail.com">becodeorg@gmail.com </a> </p>
           </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <?php  
       //unset($_SESSION["error_donnee_vide"]); 
-require_once 'Model/config.php';
+require_once 'connect.php';
 
 unset($_SESSION['ajout_ko']);
 unset($_SESSION['ajout_ok']);

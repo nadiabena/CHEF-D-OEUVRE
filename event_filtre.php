@@ -1,6 +1,6 @@
 <?php 
 
-require_once 'Model/config.php';
+require_once 'Model/connect.php';
 
 if(isset($_GET['event'])){
 	$id = $_GET['event'];

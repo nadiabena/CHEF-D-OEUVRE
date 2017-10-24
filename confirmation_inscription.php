@@ -7,18 +7,18 @@ require_once 'Model/connect.php';
 
 
   //(!empty($_GET) &&
-  if( isset($_GET['confirm_password']) && isset($_GET['password']) && isset($_GET['email'])  && isset($_GET['login_prenom']) && isset($_GET['login_nom']) &&
-      !empty($_GET['confirm_password']) && !empty($_GET['password']) && !empty($_GET['email']) && !empty($_GET['login_prenom']) && !empty($_GET['login_nom']) ){
+  if( isset($_POST['confirm_password']) && isset($_POST['password']) && isset($_POST['email'])  && isset($_POST['login_prenom']) && isset($_POST['login_nom']) &&
+      !empty($_POST['confirm_password']) && !empty($_POST['password']) && !empty($_POST['email']) && !empty($_POST['login_prenom']) && !empty($_POST['login_nom']) ){
 
-    $password = $_GET['password'];
-    $confirm_password = $_GET['confirm_password'];
-    $email = $_GET['email'];   // une adresse email est composé comment???
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
+    $email = $_POST['email'];   // une adresse email est composé comment???
 
-    $login_prenom = $_GET['login_prenom'];
-    $login_nom = $_GET['login_nom'];
+    $login_prenom = $_POST['login_prenom'];
+    $login_nom = $_POST['login_nom'];
 
-    $_SESSION['prenom_student'] = $_GET['login_prenom'];
-    $_SESSION['nom_student'] = $_GET['login_nom'];
+    $_SESSION['prenom_student'] = $_POST['login_prenom'];
+    $_SESSION['nom_student'] = $_POST['login_nom'];
 
     //$array_email = str_split($email); //tester l'email son format
 

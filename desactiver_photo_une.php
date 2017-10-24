@@ -6,7 +6,7 @@ if( isset($_GET['id']) && !empty($_GET['id']) ){
 
 	//Tester si la photo est déjà à la une, auquel cas afficher un message pour dire que la photo séléctionnée est dejà à la UNE
 	$id = $_GET['id'];
-
+	$id_event = $_GET['event'];
  	$query = $bdd->query('SELECT *
                        	  FROM photo
                           WHERE id_photo='. $id );
@@ -24,7 +24,7 @@ if( isset($_GET['id']) && !empty($_GET['id']) ){
 		//$_SESSION['photo_une_ko'] = "La photo n'est pas à la UNE!";
  	}	
 
- 	header('Location: administration.php?page=photo');
+ 	header('Location: administration.php?page=photo&event='.$id_event);
  	
 }
 

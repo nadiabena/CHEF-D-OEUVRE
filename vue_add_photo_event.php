@@ -1,3 +1,80 @@
+<?php
+
+require_once 'Model/connect.php';
+
+unset($_SESSION['event_photo_select_ok']);
+unset($_SESSION['event_photo_select_ko']);
+unset($_SESSION['event_select_ko']);
+unset($_SESSION['photo_select_ko']);
+
+$event_selected;//var target = self[self.selectedIndex].id;
+if(isset($_GET['photo']) && !empty($_GET['photo']) && isset($_GET['select_event'])  && !empty($_GET['select_event']) ){
+
+        $bdd->prepare("UPDATE photo
+                       SET id_event =". $_GET['select_event']."
+                        WHERE id_photo =". $_GET['photo'] )->execute();
+
+        $_SESSION['event_photo_select_ok'] = "La photo a bien été ajouté à l'événement!";
+
+}else if(empty($_GET['photo']) && empty($_GET['select_event'])){
+  $_SESSION['event_photo_select_ko'] = "Veuillez choisir un événement et une photo svp!";
+}else if(empty($_GET['select_event'])){
+  $_SESSION['event_select_ko'] = "Veuillez choisir un événement svp!";
+}else if(empty($_GET['photo'])){
+  $_SESSION['photo_select_ko'] = "Veuillez choisir une photo svp!";  
+}
+
+
+?>
+
+
+<?php if(isset($_SESSION['event_photo_select_ok']) )  {  ?>
+<br/>
+<div class="alert alert-success message_ok" id="div_enregistrer" >
+    <?= $_SESSION['event_photo_select_ok']; ?>
+</div>
+<?php
+} else {
+  unset($_SESSION['event_photo_select_ok']);
+}?>
+
+
+<?php if(isset($_SESSION['event_photo_select_ko']) )  {  ?>
+<br/>
+<div class="alert alert-danger message_ko" id="div_enregistrer" >
+    <?= $_SESSION['event_photo_select_ko']; ?>
+</div>
+<?php
+} else {
+  unset($_SESSION['event_photo_select_ko']);
+}?>
+
+
+<?php if(isset($_SESSION['event_select_ko']) )  {  ?>
+<br/>
+<div class="alert alert-danger message_ko" id="div_enregistrer" >
+    <?= $_SESSION['event_select_ko']; ?>
+</div>
+<?php
+} else {
+  unset($_SESSION['event_select_ko']);
+}?>
+
+
+<?php if(isset($_SESSION['photo_select_ko']) )  {  ?>
+<br/>
+<div class="alert alert-danger message_ko" id="div_enregistrer" >
+    <?= $_SESSION['photo_select_ko']; ?>
+</div>
+<?php
+} else {
+  unset($_SESSION['photo_select_ko']);
+}?>
+
+
+
+
+
 
         <h1 style="text-align:left; color:white" class="titre_vue"> <u>Ajout d'une photo à un événement </u> </h1>
         <br/>
@@ -15,31 +92,44 @@
                    
                 <div class="col-md-12">
       
-                  <form action="" method="GET" >  
+                  <form action="" method="GET" >
                       <label>Evénement: </label>
                       <select name="select_event"> 
                                   <option value="event">Choisissez un événement</option>
                     <?php      foreach ($liste_events as $key => $value) {
                       ?>
-                                  <option name="<?= $value['id_event'] ?>" value="<?= $value['description_event'] ?>">
-                                    <?= $value['description_event'] ?></option>
+                                  <option id="<?= $value['id_event'] ?>"> <?= $value['description_event'] ?></option>
                     <?php } ?>
                       </select>
+                      <br/><br/>
                     <!-- <input type="hidden" name="<?php //= $value['id_promo'] ?>"> -->
                    <!-- <input name="promo_checkbox[]" type="checkbox" id="id_promo_checkbox" value="promo">Ok<br> -->
+                      <label>Photo: </label>
+                      <select name="select_photo"> 
+                                  <option value="photo">Choisissez une photo</option>
+                    <?php      foreach ($liste_photos as $key => $value) {
+                      ?>
+                                  <option id="<?= $value['id_photo'] ?>"> <img src="<?=$value['image']?>" width="1000px"> </option>
+
+                                
+                    <?php } ?>
+                      </select>
+
                       
-                      <br/><br/>
-                      <label>Photo:</label><input type="file" name="photo" id="id_photo" multiple>   <!-- accept="image/*" -->
+                      <!-- <label>Photo:</label><input type="file" name="photo" id="id_photo" multiple> -->   <!-- accept="image/*" -->
+
+
+                      <input type="hidden" name="page" value="add_photo_event">
                       <input type="submit" value="Valider" class="btn btn-success">
                   </form>
                 </div>
 
                 <div class="col-md-8">
-                      <form action="" method="GET" enctype="multipart/form-data">
-                      <!-- <label>Photo:</label><input type="file" name="photo" id="id_photo" multiple>   accept="image/*"
-                      <input type="submit" value="Valider" class="btn btn-success"> -->
+<!--                       <form action="" method="GET" enctype="multipart/form-data">
+                      <label>Photo:</label><input type="file" name="photo" id="id_photo" multiple>   
+                      <input type="submit" value="Valider" class="btn btn-success">
                     </form>
-
+ -->
                     <!-- <select id="select" onchange="change();">
                               <option value="photo">Choisissez une photo</option>
                       <?php   //foreach ($liste_photos as $key => $value) {

@@ -6,14 +6,16 @@
 		private $description_photo;
 		private $image;
 		private $photo_une;
+		private $id_event;
 
 
-		public function __construct($id_photo, $date_photo, $description_photo, $image, $photo_une){
+		public function __construct($id_photo, $date_photo, $description_photo, $image, $photo_une, $id_event){
 			$this->id_photo = $id_photo;
 			$this->date_photo = $date_photo;
 			$this->description_photo = $description_photo;
 			$this->image = $image;
 			$this->photo_une = $photo_une;
+			$this->id_event = $id_event;
 		}
 
 
@@ -37,6 +39,11 @@
 			return $this->photo_une;
 		}
 
+		public function getIdEvent(){
+			return $this->id_event;
+		}
+
+
 
 		public function setIdPhoto($id_photo){
 			$this->id_photo = $id_photo;
@@ -57,6 +64,11 @@
 		public function setPhotoUne($photo_une){
 			$this->photo_une = $photo_une;
 		}
+
+		public function setIdEvent($id_event){
+			$this->id_event = $id_event;
+		}
+
 
 	}
 

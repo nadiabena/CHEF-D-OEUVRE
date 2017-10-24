@@ -72,8 +72,8 @@ if (isset($_SESSION['error_connexion'])) { // Si ma session error existe alors
 
       </div>
 
-      <!-- Trigger the modal with a button -->
-      <input type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" value="Nouveau utilisateur?"> <!-- s'inscrire -->
+
+      <input type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" value="Nouveau utilisateur?"> 
 
       <input style ="text-align:center" type="submit" class="btn btn-primary" value="Se connecter">
       
@@ -84,14 +84,11 @@ if (isset($_SESSION['error_connexion'])) { // Si ma session error existe alors
    </div>
 
 
-  <!-- La modal -->
   <div class="container">
-  <!-- Modal -->
 
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
-      <!-- Modal content-->
       <div class="modal-content">
 
         <div class="modal-header">
@@ -100,7 +97,7 @@ if (isset($_SESSION['error_connexion'])) { // Si ma session error existe alors
         </div>
 
         <div class="modal-body">
-          <form name="inscription" action="confirmation_inscription.php" method="GET">
+          <form name="inscription" action="confirmation_inscription.php" method="POST">
 
           <div>
             <label for="login_prenom">Prénom:<span style="color: red">*</span></label>

@@ -1,6 +1,3 @@
-
-
-
   function getXHR(){
     var xhr = null;
     //Si les navigateurs autre que IE;
@@ -30,23 +27,24 @@
  */
     function filtre(self){
       var xhr;
-      var target = self[self.selectedIndex].id;
+      //var target = self[self.selectedIndex].id;
       //je récupére l'id de l'element sur lequel je clique dans ma combo
 
       xhr = getXHR();
 
       xhr.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-          if(self[self.selectedIndex].id >= 1){
+          if(self[self.selectedIndex].id >= 1){ 
 
-            document.getElementById("id_photo_by_event").innerHTML = "<br/>" + "<u>" + this.responseText + "</u>";
+            //document.getElementById("id_photo_by_event").innerHTML = "<br/>" + "<u>" + this.responseText + "</u>";
 
           } else {
-            document.getElementById("id_photo_by_event").innerHTML = "";  // Si je selectionne autre choix Tout ou 
+            //document.getElementById("id_photo_by_event").innerHTML = "";  // Si je selectionne autre choix Tout ou 
           }
         }
       };
 
-      xhr.open("GET", "photo_by_event_filtre.php?event="+target+"&ajax=true", true);  //Méthode , UrL, base asynchro
+      //xhr.open("GET", "photo_by_event_filtre.php?event="+target, true);  //Méthode , UrL, base asynchro
+      xhr.open("GET", "photo_by_event_filtre.php?event="+target, true);
       xhr.send();
     }

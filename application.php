@@ -80,8 +80,14 @@ if(isset($_GET['login_prenom']) ){ //&& isset
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <link href="View/lightbox/css/lightbox.css" rel="stylesheet">
+
+
   <link rel="stylesheet" type="text/css" href="View/css/style.css">
 
+
+  
 </head>
 <body>
 
@@ -141,20 +147,24 @@ if(isset($_GET['login_prenom']) ){ //&& isset
               <?php }else{
                       foreach ($liste_photo_une as $key => $value) { ?>
                       <div style="padding-right:5px;" class="col-xs-3 col-md-3 shadow">
-                        <img class="" style="box-shadow: 5px 5px 10px #888888; cursor:zoom-in" src="<?= $value['image']?>" height="auto" width="100%" onclick="document.getElementById('modal01').style.display='block'"/>
+
+                        <a href="<?= $value['image']?>" data-lightbox="<?= $value['description_image']?>" data-title="<?= $value['description_photo']?>"> 
+                          <img class="" style="box-shadow: 5px 5px 10px #888888; cursor:zoom-in" src="<?= $value['image']?>" height="auto" width="100%" alt="Photo Evénement BeCode" /> 
+                        </a>
+
+                        <!-- <img class="" style="box-shadow: 5px 5px 10px #888888; cursor:zoom-in" src="<?//= $value['image']?>" height="auto" width="100%" onclick="document.getElementById('modal01').style.display='block'"/>
 
 
-<a id="single_1" href="<?= $value['image']?>" title="">
-  <img src="<?= $value['image']?>" width="10%" alt="" />
-</a>
-        
-<!--                          <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
+<a id="single_1" href="<?//= $value['image']?>" title="" data-lightbox="<?//= $value['image']?>">
+  <img src="<?//= $value['image']?>" width="10%" alt="" />
+</a> -->
+
+<!--                           <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
                             <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
                               <div class="w3-modal-content w3-animate-zoom">
                                 <img src="<?//= $value['image']?>" style="width:100%">
                               </div>
                           </div> -->
- 
 
                         <button type="button">
                             <a href="<?= $value['image']?>" download>
@@ -241,17 +251,8 @@ if(isset($_GET['login_prenom']) ){ //&& isset
 </div>
 
 
-<script>
-$(document).ready(function() {
-    $("#single_1").fancybox({
-          helpers: {
-              title : {
-                  type : 'float'
-              }
-          }
-      });
-</script>
 
+<script src="View/lightbox/js/lightbox.js"></script>
 </body>
 
 </html>

@@ -6,16 +6,18 @@
 		private $prenom_user;
 		private $datenaissance_user;
 		private $email_user;
+		private $telephone;
 		private $login_user;
 		private $password_user;
 		private $statut_user;
 
-		public function __construct($id_user, $nom_user, $prenom_user, $datenaissance_user, $email_user, $login_user, $password_user, $statut_user){
+		public function __construct($id_user, $nom_user, $prenom_user, $datenaissance_user, $email_user, $telephone, $login_user, $password_user, $statut_user){
 			$this->id_user = $id_user;
 			$this->nom_user = $nom_user; 
 			$this->prenom_user = $prenom_user;
 			$this->datenaissance_user = $datenaissance_user;
 			$this->email_user = $email_user;
+			$this->telephone = $telephone;
 			$this->login_user = $login_user;
 			$this->password_user =$password_user;
 			$this->statut_user = $statut_user;
@@ -39,6 +41,10 @@
 
 		public function getEmailUser(){
 			return $this->email_user;
+		}
+
+		public function getTelephone(){
+			return $this->telephone;
 		}
 
 		public function getLoginUser(){
@@ -72,6 +78,10 @@
 
 		public function setEmailUser($email_user){
 			$this->email_user = $email_user;
+		}
+
+		public function setTelephone($telephone){
+			return $this->telephone = $telephone;
 		}
 
 		public function setLoginUser($login_user){

@@ -1,12 +1,15 @@
 <?php 
 
-session_start();
+if(isset($_GET['ajax']) && $_GET['ajax']){
+  session_start();
+  require_once 'Model/connect.php';
+}
 
-require_once 'Model/connect.php';
+$id_event = null;
 
 if(isset($_GET['event'])){
 	$id = $_GET['event'];
-
+  $id_event = $id;
  	$query = $bdd->query('SELECT *
                        FROM event
                        WHERE id_event='. $bdd->quote($id) );
@@ -88,7 +91,7 @@ if(isset($_GET['event'])){
                           <td width="20%"> 
                           
 
-                            <a href='activer_photo_une.php?id=<?= $value['id_photo']; ?>'>
+                            <a href='activer_photo_une.php?id=<?= $value['id_photo']; ?>&event=<?= $id_event ?>'>
                             	<button class="btn button_update_delete">
                               		<span class="glyphicon glyphicon-thumbs-up"></span></p>  
                             	</button>   
@@ -96,7 +99,7 @@ if(isset($_GET['event'])){
                             
                             |
 
-                            <a href='deasctiver_photo_une.php?id=<?= $value['id_photo']; ?>'>
+                            <a href='desactiver_photo_une.php?id=<?= $value['id_photo']; ?>&event=<?= $id_event ?>'>
                               <button class="btn btn-default button_update_delete">
                                 <span class="glyphicon glyphicon-thumbs-down"></span>
                               </button>
@@ -108,9 +111,10 @@ if(isset($_GET['event'])){
 
 
 
+			<?php   } ?>
+    </table>
+			<?php	}?>
 
-			<?php   } 
-				}?>
 
 		</div>
 

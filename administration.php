@@ -19,7 +19,7 @@ if(!isset($_POST['login_prenom']) || !isset($_POST['password']) || empty($_POST[
     $_SESSION['error_connexion'] = 'Erreur! Le mot de passe et/ou le login incorrect..';
     header('Location: connexion_admin.php');
 }else{
-     
+
 }
 
 //   // if(empty($_POST['login_prenom']) || empty($_POST['password'])){
@@ -165,7 +165,7 @@ $liste_photos = $query_photos->fetchALL(PDO::FETCH_ASSOC);
           <p> <i class="fa fa-users" aria-hidden="true"></i> <a href="administration.php?page=classes"> Gestion des classes </a></p>           
           <p> <i class="fa fa-users" aria-hidden="true"></i> <a href="administration.php?page=students"> Gestion des étudiants </a></p>
           <p> <i class="fa fa-camera-retro" aria-hidden="true"></i> <a href="administration.php?page=event"> Gestion des événements </a></p>         
-          <p id="menu"> <i class="fa fa-cog" aria-hidden="true"></i> Gestion du contenu du site </p>
+          <p class="lien_menu" id="menu"> <i class="fa fa-cog" aria-hidden="true"></i> Gestion du contenu du site </p>
 
             <div id="sous_menu" style="padding-left: 30px; display: none;">
                 <p id="" style="font-size:12px"> <i class="fa fa-cog" aria-hidden="true"></i> <a href="administration.php?page=add_photo_event"> Ajouter photo à un événement </a></p>               
@@ -218,7 +218,7 @@ $liste_photos = $query_photos->fetchALL(PDO::FETCH_ASSOC);
                                     //include 'vue_archive.php';
                                     break;
                       default:
-                                    include 'vue_error404.php';
+                                    include 'View/vue_error404.php';
                                     break;
                                   
                   }
@@ -302,25 +302,7 @@ $liste_photos = $query_photos->fetchALL(PDO::FETCH_ASSOC);
 <script type="text/javascript" src="View/js/vue_students.js"></script>
 <script type="text/javascript" src="View/js/vue_liste_evenements.js"></script>
 
-<script type="text/javascript">
-  
-  // document.getElementById("menu").addEventListener("click", display_sous_menu);
-
-  // function display_sous_menu() {
-  //     document.getElementById("sous_menu").removeAttribute("class");
-  //     document.getElementById("sous_menu").style.display = 'block';
-  // }
-
-</script>
-
 <script>
-  // $(document).ready(function(){
-  //     $("#menu").click(function(){
-  //         //$("#sous_menu").toggle();
-  //         $("#sous_menu").toggle();
-  //     });
-  // });
-
 
 $(document).ready(function(){
     $("#menu").click(function(){
@@ -329,28 +311,15 @@ $(document).ready(function(){
         }else{
           $("#sous_menu").css('display', 'none');
         }
-        //$("#sous_menu").removeClass("cacher");
-        //$("#sous_menu").css('visibility','visible');
     });
 
 
-    //Marche pas!
-    $('#sous_menu_photo').click(function(){
-      $("#sous_menu").css('display', 'block');
-    });
-
+    //Récupérer l'url si page=photo ou  page=add_photo_event alors display block
+    if(location.toString().indexOf("photo") != -1){
+        $("#sous_menu").css('display', 'block');
+    }
 
 });
-
-
-
-
-
-
-
-
-
-
 
 </script>
 

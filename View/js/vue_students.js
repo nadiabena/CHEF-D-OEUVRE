@@ -1,11 +1,4 @@
-  function checker() {
-    // if(document.getElementById("promo_checkbox").checked == true){
-    //     console.log("checked!");
-    //     //console.log("Quelle promo selected: "+);
 
-    // }
-  
-  }
 
   function creer_contenu_student(){
     //Griser le bouton recherche

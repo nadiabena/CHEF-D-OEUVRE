@@ -36,7 +36,7 @@ echo '<img src="$photos_event[0]["image"]" >';
 
 		</div>	 -->
 
-		<div style="border:1px solid red" class= "col-md-3">
+		<div style="border:1px solid red" class= "col-md-12">
 			<?php
 				if(sizeof($photos_event) == 0){ ?>
 					<label> Aucune photo disponible pour cet événement! </label>	

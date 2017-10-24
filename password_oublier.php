@@ -30,10 +30,10 @@
 $envoi_password_ok = "";
 $envoi_password_ko = "";
 
-if(isset($_GET['email']) && !empty($_GET['email'])){
+if(isset($_POST['email']) && !empty($_POST['email'])){
   //$_SESSION["envoi_password_ok"] = "Votre demande a bien été prise en compte, vous recevrez un nouveau mot de passe sous peu!";
   $envoi_password_ok = "Votre demande a bien été prise en compte, vous recevrez un nouveau mot de passe sous peu!";
-}else if(isset($_GET['email']) && empty($_GET['email'])){
+}else if(isset($_POST['email']) && empty($_POST['email'])){
   //$_SESSION["envoi_password_ko"] = "Adresse email vide!";
   $envoi_password_ko = "Adresse email vide!";
 }
@@ -84,7 +84,7 @@ if(isset($_GET['email']) && !empty($_GET['email'])){
         Veuillez entrer votre adresse email sur lequel vous recevrez les directives pour réinitialiser votre
         mot de passe. <br/><br/>
 
-        <form action="" method="GET">
+        <form action="" method="POST">
             <div class="input-group">
               <input name="email" type="text" class="form-control" id="id_email" placeholder="Entrez votre adresse email">
               <input type="submit" class="btn btn-primary" value="Envoyer">
